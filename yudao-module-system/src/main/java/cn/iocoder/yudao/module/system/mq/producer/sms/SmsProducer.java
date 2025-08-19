@@ -35,7 +35,7 @@ public class SmsProducer {
                                    Long channelId, String apiTemplateId, List<KeyValue<String, Object>> templateParams) {
         SmsSendMessage message = new SmsSendMessage().setLogId(logId).setMobile(mobile);
         message.setChannelId(channelId).setApiTemplateId(apiTemplateId).setTemplateParams(templateParams);
-        applicationContext.publishEvent(message);
+        applicationContext.publishEvent(message); // Spring 4.2+ 后可省略继承 ApplicationEvent  ，支持任意对象作为事件
     }
 
 }

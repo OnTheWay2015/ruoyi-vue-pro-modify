@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @TenantIgnore
 public class SmsCodeDO extends BaseDO {
-
+    //sendSmsCode ==> createSmsCode 插入数据
     /**
      * 编号
      */

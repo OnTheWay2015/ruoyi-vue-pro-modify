@@ -32,7 +32,7 @@ public enum SmsSceneEnum implements ArrayValuable<Integer> {
      */
     private final Integer scene;
     /**
-     * 模版编码
+     * 模版编码(渠道编码) 对应 ruoyi-vue-pro`.system_sms_template.code
      */
     private final String templateCode;
     /**

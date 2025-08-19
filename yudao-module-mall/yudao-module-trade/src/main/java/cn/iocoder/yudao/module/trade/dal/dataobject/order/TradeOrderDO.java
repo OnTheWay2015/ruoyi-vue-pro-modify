@@ -304,6 +304,8 @@ public class TradeOrderDO extends BaseDO {
      *
      * 目的：用于订单支付后赠送优惠券
      */
+    // 使用@TableField(typeHandler = JacksonTypeHandler.class) 注解时，
+    // MyBatis Plus会自动通过Jackson库将Map对象序列化为JSON字符串存储到数据库，并在查询时反序列化回Map对象
     @TableField(typeHandler = JacksonTypeHandler.class)
     private Map<Long, Integer> giveCouponTemplateCounts;
     /**
@@ -311,6 +313,9 @@ public class TradeOrderDO extends BaseDO {
      *
      * 目的：用于后续取消或者售后订单时，需要扣减赠送
      */
+    //@TableField(typeHandler = LongListTypeHandler.class)注解时，
+    // MyBatis-Plus会通过自定义类型处理器将List<Long>序列化为字符串存储，查询时再反序列化回集合对象
+    // giveCouponIds 属性对应的字段类型应为JSON类型（MySQL 5.7+版本）或VARCHAR/TEXT类型
     @TableField(typeHandler = LongListTypeHandler.class)
     private List<Long> giveCouponIds;
 

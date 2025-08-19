@@ -1,0 +1,79 @@
+//注意在 mapper 里字段属性名的写法是没有下横线的,比如代码里是 giveCouponTemplateCounts 对应表里是 give_coupon_template_counts
+{
+//复杂数据,代码写法示例
+    // 使用@TableField(typeHandler = JacksonTypeHandler.class) 注解时，
+    // MyBatis Plus会自动通过Jackson库将Map对象序列化为JSON字符串存储到数据库，并在查询时反序列化回Map对象
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private Map<Long, Integer> giveCouponTemplateCounts;
+    
+    //@TableField(typeHandler = LongListTypeHandler.class)注解时，
+    // MyBatis-Plus会通过自定义类型处理器将List<Long>序列化为字符串存储，查询时再反序列化回集合对象
+    // giveCouponIds 属性对应的字段类型应为JSON类型（MySQL 5.7+版本）或VARCHAR/TEXT类型
+    @TableField(typeHandler = LongListTypeHandler.class)
+    private List<Long> giveCouponIds;
+}
+
+alter table trade_order add give_coupon_template_counts JSON comment "按报错添加" ;
+ 
+
+alter table trade_order add give_coupon_ids TEXT comment "按报错添加" ;
+alter table trade_order add point_activity_id int(11) comment "按报错添加" ;
+ 
+
+alter table trade_delivery_pick_up_store add verify_user_ids TEXT comment "按报错添加"  ;
+
+
+alter table trade_brokerage_withdraw add user_name varchar(64) comment "按报错添加" ;
+alter table trade_brokerage_withdraw add user_account varchar(64) comment "按报错添加" ;
+alter table trade_brokerage_withdraw add qr_code_url TEXT comment "按报错添加" ;
+alter table trade_brokerage_withdraw add pay_transfer_id bigint(20) comment "按报错添加" ;
+alter table trade_brokerage_withdraw add transfer_channel_code bigint(20) comment "按报错添加" ;
+alter table trade_brokerage_withdraw add transfer_error_msg TEXT comment "按报错添加" ;
+alter table trade_brokerage_withdraw add transfer_time datetime comment "按报错添加" ;
+
+ 
+alter table promotion_coupon_template add description varchar(500) comment "按报错添加" ;
+
+
+alter table promotion_discount_product add activity_name varchar(500) comment "按报错添加" ;
+
+
+alter table promotion_reward_activity add product_scope_values varchar(500) comment "按报错添加" ;
+
+
+alter table pay_app add app_key varchar(64) comment "按报错添加" ;
+
+ 
+//按运行报错添加
+alter table pay_order add user_id int(11)  comment "按运行报错添加" ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

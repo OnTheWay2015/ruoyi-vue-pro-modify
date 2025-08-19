@@ -47,7 +47,7 @@ public class SmsCodeServiceImpl implements SmsCodeService {
         String code = createSmsCode(reqDTO.getMobile(), reqDTO.getScene(), reqDTO.getCreateIp());
         // 发送验证码
         smsSendService.sendSingleSms(reqDTO.getMobile(), null, null,
-                sceneEnum.getTemplateCode(), MapUtil.of("code", code));
+                sceneEnum.getTemplateCode() /*渠道编码*/, MapUtil.of("code", code));
     }
 
     private String createSmsCode(String mobile, Integer scene, String ip) {
@@ -67,6 +67,7 @@ public class SmsCodeServiceImpl implements SmsCodeService {
         }
 
         // 创建验证码记录
+        // smsCodeProperties 参数来自于 @ConfigurationProperties(prefix = "yudao.sms-code")
         String code = String.format("%0" + smsCodeProperties.getEndCode().toString().length() + "d",
                 randomInt(smsCodeProperties.getBeginCode(), smsCodeProperties.getEndCode() + 1));
         SmsCodeDO newSmsCode = SmsCodeDO.builder().mobile(mobile).code(code).scene(scene)

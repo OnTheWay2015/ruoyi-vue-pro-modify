@@ -81,7 +81,7 @@ public class SmsSendServiceImpl implements SmsSendService {
     public Long sendSingleSms(String mobile, Long userId, Integer userType,
                               String templateCode, Map<String, Object> templateParams) {
         // 校验短信模板是否合法
-        SmsTemplateDO template = validateSmsTemplate(templateCode);
+        SmsTemplateDO template = validateSmsTemplate(templateCode);//templateCode 渠道编码
         // 校验短信渠道是否合法
         SmsChannelDO smsChannel = validateSmsChannel(template.getChannelId());
 

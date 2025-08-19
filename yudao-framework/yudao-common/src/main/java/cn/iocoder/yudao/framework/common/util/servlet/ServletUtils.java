@@ -93,6 +93,25 @@ public class ServletUtils {
     }
 
     public static String getBody(HttpServletRequest request) {
+        // 加判断防止重复读取
+        try {
+            if(request.getInputStream().isFinished()){
+                //toto 定位在哪里重复读取
+                // /app-api/promotion/coupon/match-list 获得匹配指定商品的优惠劵列表,当前没有实现对应的响应路由,会跳转到 /error, 接着会到这里触发报错
+
+                return null;
+            }
+
+        }catch(IOException e){
+            return null;
+        }
+
+        // 加判断防止重复读取
+        if (request.isAsyncStarted() || request.getParameterMap().isEmpty()) {
+            return null;
+        }
+
+
         // 只有在 json 请求在读取，因为只有 CacheRequestBodyFilter 才会进行缓存，支持重复读取
         if (isJsonRequest(request)) {
             return ServletUtil.getBody(request);
